@@ -1,0 +1,6 @@
+@DMS.ShoppingCart.API_HostAddress = http://localhost:5178
+
+GET {{DMS.ShoppingCart.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

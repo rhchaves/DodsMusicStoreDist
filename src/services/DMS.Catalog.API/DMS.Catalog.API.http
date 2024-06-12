@@ -1,0 +1,6 @@
+@DMS.Catalog.API_HostAddress = http://localhost:5139
+
+GET {{DMS.Catalog.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
