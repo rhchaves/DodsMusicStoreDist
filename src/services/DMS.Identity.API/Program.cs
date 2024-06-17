@@ -1,25 +1,28 @@
+using DMS.Identity.API.Configuration;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+var hostEnvironment = builder.Environment;
 
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Configuration
+    .SetBasePath(hostEnvironment.ContentRootPath)
+    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+    .AddJsonFile($"appsettings.{hostEnvironment.EnvironmentName}.json", optional: true, reloadOnChange: true)
+    .AddEnvironmentVariables();
+
+if (hostEnvironment.IsDevelopment())
+{
+    builder.Configuration.AddUserSecrets<Program>();
+}
+
+builder.Services.AddIdentityConfiguration(builder.Configuration);
+builder.Services.AddApiConfiguration();
+builder.Services.AddSwaggerConfiguration();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
+app.UseSwaggerConfiguration();
+app.UseApiConfiguration(app.Environment);
 
 app.Run();
