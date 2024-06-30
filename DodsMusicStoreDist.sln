@@ -18,6 +18,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MVC", "MVC", "{D49A6B08-FDE4-4BA5-802D-BC3F5D09E3DA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DMS.WebApp.MVC", "src\web\DMS.WebApp.MVC\DMS.WebApp.MVC.csproj", "{A62A3BF5-D408-481A-84D1-8E25D052CAAC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{096D0AE7-4FD1-4E80-8353-62A7111CDE1B} = {096D0AE7-4FD1-4E80-8353-62A7111CDE1B}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{AA4F56FC-D4B2-42B5-B3EF-7258A09CDA0B}"
 EndProject
@@ -37,11 +40,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Purchase Order", "Purchase 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DMS.PurchaseOrder.API", "src\services\DMS.PurchaseOrder.API\DMS.PurchaseOrder.API.csproj", "{8A07497F-F242-404C-BF72-02DC87854360}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DMS.Payment.API", "src\services\DMS.Payment.API\DMS.Payment.API.csproj", "{69A77334-DAE2-4717-9DF2-F1F63C00CB54}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DMS.Payment.API", "src\services\DMS.Payment.API\DMS.Payment.API.csproj", "{69A77334-DAE2-4717-9DF2-F1F63C00CB54}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shopping Cart", "Shopping Cart", "{33D14E03-95F4-469D-9183-ABC0C48FEDED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DMS.ShoppingCart.API", "src\services\DMS.ShoppingCart.API\DMS.ShoppingCart.API.csproj", "{D1C889DA-C724-4D3B-BAA5-FCACD5BBDA50}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DMS.ShoppingCart.API", "src\services\DMS.ShoppingCart.API\DMS.ShoppingCart.API.csproj", "{D1C889DA-C724-4D3B-BAA5-FCACD5BBDA50}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -3,7 +3,6 @@ using DMS.WebApp.MVC.Models;
 using Microsoft.Extensions.Options;
 using System.Text;
 using System.Text.Json;
-using static DMS.WebApp.MVC.Models.ErrorViewModel;
 
 namespace DMS.WebApp.MVC.Services;
 

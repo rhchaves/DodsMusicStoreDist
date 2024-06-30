@@ -1,50 +1,49 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
-namespace DMS.Identity.API.Controllers
+namespace DMS.Identity.API.Controllers;
+
+[ApiController]
+public abstract class MainController : Controller
 {
-    [ApiController]
-    public abstract class MainController : Controller
+    protected ICollection<string> Errors = new List<string>();
+
+    protected ActionResult CustomResponse(object result = null)
     {
-        protected ICollection<string> Errors = new List<string>();
-
-        protected ActionResult CustomResponse(object result = null)
+        if (ValidatedOperation())
         {
-            if (ValidatedOperation())
-            {
-                return Ok(result);
-            }
-
-            return BadRequest(new ValidationProblemDetails(new Dictionary<string, string[]>
-            {
-                { "Mensagens", Errors.ToArray() }
-            }));
+            return Ok(result);
         }
 
-        protected ActionResult CustomResponse(ModelStateDictionary modelState)
+        return BadRequest(new ValidationProblemDetails(new Dictionary<string, string[]>
         {
-            var errors = modelState.Values.SelectMany(e => e.Errors);
-            foreach (var error in errors)
-            {
-                AddErrorProcessing(error.ErrorMessage);
-            }
+            { "Messages", Errors.ToArray() }
+        }));
+    }
 
-            return CustomResponse();
+    protected ActionResult CustomResponse(ModelStateDictionary modelState)
+    {
+        var errors = modelState.Values.SelectMany(e => e.Errors);
+        foreach (var error in errors)
+        {
+            AddErrorProcessing(error.ErrorMessage);
         }
 
-        protected bool ValidatedOperation()
-        {
-            return !Errors.Any();
-        }
+        return CustomResponse();
+    }
 
-        protected void AddErrorProcessing(string error)
-        {
-            Errors.Add(error);
-        }
+    protected bool ValidatedOperation()
+    {
+        return !Errors.Any();
+    }
 
-        protected void ClearErrorsProcessing()
-        {
-            Errors.Clear();
-        }
+    protected void AddErrorProcessing(string error)
+    {
+        Errors.Add(error);
+    }
+
+    protected void ClearErrorsProcessing()
+    {
+        Errors.Clear();
     }
 }

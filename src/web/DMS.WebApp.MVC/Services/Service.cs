@@ -41,5 +41,4 @@ public abstract class Service
         response.EnsureSuccessStatusCode();
         return true;
     }
-    
 }
